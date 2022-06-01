@@ -7,10 +7,6 @@ module.exports = (app) => {
   app.log.info("Yay, the app was loaded!");
 
   app.on("issues.opened", async (context) => {
-    // Load config from .github/config.yml in the repository
-    const config = context.config('config.yml')
-    app.log.info(config);
-
     const issueComment = context.issue({
       body: "Thanks for opening this issue!",
     });
@@ -37,5 +33,10 @@ module.exports = (app) => {
 
   app.onAny(async (context) => {
     app.log.info({ event: context.name, action: context.payload.action });
+    
+    // Load config from .github/config.yml in the repository
+    const config = await context.config('config.yml')
+    app.log.info("Configuration");
+    app.log.info(config);
   });
 };

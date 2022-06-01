@@ -1,2 +1,4 @@
-config1: true
-config2: Default
+config1: false
+config2: Default Shared
+shared1: will be merged
+shared2: will also be merged
